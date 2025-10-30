@@ -8,21 +8,40 @@ ESTILOS GLOBALES Y CONTENEDOR PRINCIPAL - DARK THEME
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@300;400;500;700&display=swap');
 
 :root {
-    /* Variables de Color (INVERTIDAS para Dark Theme) */
-    --color-bg-dark: #000000; /* Gris muy oscuro/casi negro para el fondo principal */
-    --color-bg-light: #000000; /* Gris ligeramente más claro para el 'canvas' */
-    --color-text-light: #e0e0e0; /* Blanco roto/gris claro para el texto */
-    --color-text-red: #b30000; /* Rojo oscuro para texto destacado */
-    --color-text-subtle: #c7c7c7; /* Gris medio para elementos sutiles como 'Landing' y copyright */
-    --color-white: #ffffff; /* Sigue siendo blanco para el fondo de la imagen (contraste) */
-    --color-border-subtle: rgb(255, 255, 255); /* Color sutil para el borde */
-
+    /* Variables de Color */
+    --color-bg-dark: #000000;
+    --color-bg-light: #000000;
+    --color-text-light: #e0e0e0;
+    --color-text-red: #b30000;
+    --color-text-subtle: #c7c7c7;
+    --color-white: #ffffff;
+    --color-border-subtle: rgb(255, 255, 255);
 
     /* Variables de Tipografía */
-    /* Establecemos Pixelify Sans como fuente primaria (se importa arriba). */
     --font-primary: 'Pixelify Sans', 'Helvetica Neue', 'Arial', sans-serif;
-    --font-size-logo: 1.2rem;
-    
+    --font-size-base: 20px; /* Base para rem: 1rem = 16px */
+
+    /* --- ESCALA TIPOGRÁFICA --- */
+    --fs-xs: 0.75rem;   /* 12px (Ej: Copyright) */
+    --fs-sm: 0.9rem;    /* 14.4px (Ej: Nav, Enlaces Footer) */
+    --fs-md: 1rem;      /* 16px (Ej: Párrafo base, CTA Link) */
+    --fs-lg: 1.2rem;    /* 19.2px (Ej: Logo, Títulos Grid) */
+    --fs-xl: 1.8rem;    /* 28.8px (Ej: H2 de secciones, Párrafo principal) */
+    --fs-xxl: 2.8rem;   /* 44.8px (Ej: H1 principal) */
+    --fs-xxxl: 5rem;    /* 80px (Ej: Landing Tag) */
+
+    /* Variables de Espaciado */
+    --space-xs: 5px;
+    --space-sm: 10px;
+    --space-md: 20px;
+    --space-lg: 30px;
+    --space-xl: 50px;
+    --space-xxl: 100px;
+}
+
+/* Base de tipografía en el elemento raiz (html) para control global */
+html {
+    font-size: var(--font-size-base); 
 }
 
 /* Reset básico para eliminar márgenes y padding por defecto */
@@ -32,28 +51,24 @@ ESTILOS GLOBALES Y CONTENEDOR PRINCIPAL - DARK THEME
     padding: 0;
 }
 
-
 body {
-    /* Fondo muy oscuro */
     background-color: var(--color-bg-dark); 
     font-family: var(--font-primary);
-    /* Mejoras tipográficas globales */
-    font-optical-sizing: auto;
     font-weight: 400;
-    color: var(--color-text-light); /* Texto claro */
+    color: var(--color-text-light);
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
-    justify-content: center; /* Centramos el contenido principal del body */
+    justify-content: center;
 }
 
 /* Contenedor principal que simula el "lienzo" */
 .app-container {
-    background-color: var(--color-bg-light); /* Un tono ligeramente más claro que el body si se desea el efecto */
-    width: 80%;
-    padding: 0 5vw; /* Padding lateral */
+    background-color: var(--color-bg-light); 
+    width: 85%;
+    padding: 0;
     display: flex;
-    margin: auto; /* Centrado con margen automático */
+    margin: auto; 
     flex-direction: column;
 }
 
@@ -66,10 +81,10 @@ HEADER (Encabezado y Navegación) - DARK THEME
 .landing-tag {
     position: absolute; 
     top: 15px;
-    /* Ajustamos 'left' para que sea relativo al app-container en el centrado */
     left: 5vw; 
-    font-size: 5rem;
-    color: var(--color-text-subtle); /* Sutil */
+    /* Usando variable de escala */
+    font-size: var(--fs-xxxl); 
+    color: var(--color-text-subtle);
     text-transform: uppercase;
 }
 
@@ -77,12 +92,13 @@ HEADER (Encabezado y Navegación) - DARK THEME
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding-top: 50px;
-    height: 100px;
+    padding-top: var(--space-xl);
+    height: var(--space-xxl);
 }
 
 .logo {
-    font-size: var(--font-size-logo);
+    /* Usando variable de escala */
+    font-size: var(--fs-lg); 
     text-transform: lowercase;
     font-weight: bold;
     color: var(--color-text-light);
@@ -91,26 +107,25 @@ HEADER (Encabezado y Navegación) - DARK THEME
 .main-nav ul {
     list-style: none;
     display: flex;
-    gap: 30px; 
+    gap: var(--space-lg); 
 }
 
 .main-nav a {
     text-decoration: none;
-    color: var(--color-text-light); /* Texto claro */
-    font-size: 0.95rem;
-    /* Para darles un poco de interacción en hover */
+    color: var(--color-text-light);
+    /* Usando variable de escala */
+    font-size: var(--fs-sm); 
     transition: color 0.2s;
 }
 
 .main-nav a:hover {
     color: var(--color-text-red);
-
 }
 
 
 /*
 ====================================
-CONTENIDO PRINCIPAL (Texto e Imagen) - Mismos Estilos, Colores Invertidos
+CONTENIDO PRINCIPAL (HOME PAGE)
 ====================================
 */
 
@@ -123,11 +138,9 @@ CONTENIDO PRINCIPAL (Texto e Imagen) - Mismos Estilos, Colores Invertidos
 }
 
 .content-section {
-    display: flex;
-    gap: 100px; 
-    max-width: 900px; 
-    width: 100%;
-    margin-top: -50px; 
+    width: 85%;
+    display: flex; /* <-- ¡Esto crea las dos columnas! */
+    gap: 1rem;
 }
 
 .text-column {
@@ -136,14 +149,16 @@ CONTENIDO PRINCIPAL (Texto e Imagen) - Mismos Estilos, Colores Invertidos
 }
 
 .text-column h1 {
-    font-size: 2.8rem;
+    /* Usando variable de escala */
+    font-size: var(--fs-xxl); 
     font-weight: 500; 
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-bottom: var(--space-md);
 }
 
 .text-column p {
-    font-size: 1.8rem;
+    /* Usando variable de escala */
+    font-size: var(--fs-xl); 
     font-weight: 300; 
     line-height: 1.4;
     max-width: 500px;
@@ -151,7 +166,6 @@ CONTENIDO PRINCIPAL (Texto e Imagen) - Mismos Estilos, Colores Invertidos
 
 .image-column {
     flex: 1; 
-    /* Mantenemos el fondo de la imagen blanco puro para un contraste fuerte y que resalte */
     background-color: var(--color-white); 
     padding: 0;
 }
@@ -172,57 +186,66 @@ FOOTER (Pie de Página) - DARK THEME
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0 30px 0; 
-    /* Línea sutil más oscura */
+    padding: var(--space-md) 0 var(--space-lg) 0; 
     border-top: 1px solid var(--color-border-subtle); 
+    flex-wrap: wrap; /* Para responsive */
 }
 
 .footer-left {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: var(--space-md);
 }
 
 .logo-footer {
-    font-size: var(--font-size-logo);
+    /* Usando variable de escala */
+    font-size: var(--fs-lg); 
     text-transform: lowercase;
     font-weight: bold;
     color: var(--color-text-light);
 }
 
 .copyright {
-    font-size: 0.75rem;
-    color: var(--color-text-subtle); /* Sutil */
+    /* Usando variable de escala */
+    font-size: var(--fs-xs); 
+    color: var(--color-text-subtle);
+}
+
+.footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md); /* Ajustado a variable */
+    justify-content: flex-end;
 }
 
 .footer-social a {
     text-decoration: none;
-    color: var(--color-text-light); /* Iconos claros */
-    font-size: 0.9rem;
-    margin-left: 20px;
+    color: var(--color-text-light);
+    /* Usando variable de escala */
+    font-size: var(--fs-sm); 
     font-weight: 500;
 }
 
 /*
 ====================================
-CONTENIDO ESPECÍFICO DE LA PÁGINA DE TRABAJO
+CONTENIDO ESPECÍFICO DE LA PÁGINA DE TRABAJO (TRABAJOS.HTML)
 ====================================
 */
 
 .work-content-wrapper {
     flex-grow: 1;
-    padding: 50px 0; /* Espaciado general para las secciones de trabajo */
-    width: 80%;
-    margin: 0 auto; /* Centrar el contenido de trabajo */
+    padding: var(--space-xl) 0; 
+    max-width: 85%;
+    margin: 0 auto;
 }
 
 .work-section {
-    margin-bottom: 40px; /* Espacio entre secciones */
-    padding-bottom: 20px;
+    margin-bottom: var(--space-lg); 
+    padding-bottom: 0; /* Lo quitamos porque el border-bottom está en summary */
 }
 
 .work-section:last-of-type {
-    border-bottom: none; /* Eliminar la línea del último elemento */
+    border-bottom: none;
 }
 
 .section-summary {
@@ -230,11 +253,10 @@ CONTENIDO ESPECÍFICO DE LA PÁGINA DE TRABAJO
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    padding: 15px 0;
-    list-style: none; /* Elimina el marcador por defecto de <summary> */
-    outline: none; /* Elimina el borde de enfoque al hacer click */
-    border-bottom: 1px solid var(--color-border-subtle); /* Línea divisoria */
-
+    padding: var(--space-sm) 0;
+    list-style: none;
+    outline: none;
+    border-bottom: 1px solid var(--color-border-subtle); 
 }
 
 /* Ocultar el marcador por defecto en algunos navegadores */
@@ -243,7 +265,8 @@ details > summary::-webkit-details-marker {
 }
 
 .section-summary h2 {
-    font-size: 1.8rem;
+    /* Usando variable de escala */
+    font-size: var(--fs-xl); 
     font-weight: 500;
     margin: 0;
     color: var(--color-text-light);
@@ -255,91 +278,121 @@ details > summary::-webkit-details-marker {
     height: 15px;
     border-right: 2px solid var(--color-text-light);
     border-bottom: 2px solid var(--color-text-light);
-    transform: rotate(-45deg); /* Forma de 'V' inicial */
+    transform: rotate(-45deg); 
     transition: transform 0.3s ease;
 }
 
 .work-section[open] .summary-icon {
-    transform: rotate(45deg); /* Rota a una 'A' invertida cuando está abierto */
+    transform: rotate(45deg);
 }
 
 .section-content {
-    padding-top: 20px; /* Espacio entre el summary y el contenido */
-    padding-bottom: 10px;
+    padding-top: var(--space-md); 
+    padding-bottom: var(--space-sm);
     display: flex;
+    gap: var(--space-xl); /* Espacio entre columnas en la sección de video */
 }
 
+/* Estilos para la sección de video */
+.video-section .section-content {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.video-description-column {
+    flex: 1;
+    max-width: 400px;
+    padding-right: var(--space-lg);
+}
+
+.video-description-column p {
+    /* Usando variable de escala */
+    font-size: var(--fs-md); 
+    color: var(--color-text-light);
+    margin-bottom: var(--space-md);
+}
 
 .call-to-action-link {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
     color: var(--color-text-light);
-    font-size: 1rem;
+    /* Usando variable de escala */
+    font-size: var(--fs-md); 
     font-weight: 500;
     transition: color 0.2s;
 }
 
-.call-to-action-link:hover {
-    color: var(--color-text-subtle);
-}
-
 .arrow-icon {
-    display: inline-block;
     width: 12px;
     height: 12px;
     border-right: 2px solid var(--color-text-light);
     border-bottom: 2px solid var(--color-text-light);
     transform: rotate(-45deg);
-    margin-left: 10px;
+    margin-left: var(--space-sm);
     transition: border-color 0.2s;
 }
 
-.call-to-action-link:hover .arrow-icon {
-    border-color: var(--color-text-subtle);
+.video-player-column {
+    flex: 1.5; 
+    background-color: var(--color-white); 
+    padding: var(--space-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+}
+
+.video-player-column iframe {
+    width: 100%;
+    height: 300px;
+    display: block;
 }
 
 
-/* Estilos específicos para la sección de cuadrícula de imágenes */
+/* Estilos para la cuadrícula de imágenes */
 .image-grid-section .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas responsivas */
-    gap: 30px; /* Espacio entre las imágenes */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: var(--space-lg);
 }
 
 .grid-item {
-    background-color: var(--color-bg-light); /* Fondo del item, quizás un poco más claro para contraste */
+    background-color: var(--color-bg-light);
     text-decoration: none;
     color: var(--color-text-light);
     position: relative;
-    overflow: hidden; /* Para que la imagen no se salga */
+    overflow: hidden; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 250px; /* Altura fija para los items de la cuadrícula */
-    padding: 15px; /* Padding interno */
+    height: 250px; 
+    padding: 15px; 
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .grid-item:hover, .full-width-image-link:hover {
     transform: translateY(-5px);
-    /* iniciar con rojo y activar la animación continua */
     box-shadow: 0 5px 15px rgba(179, 0, 0, 0.85);
-    animation: glow-red-green 2.5s linear infinite;
+    /* Aquí puedes definir la animación 'glow-red-green' si quieres que el efecto sea más complejo */
 }
 
 .grid-item .item-number {
-    font-size: 0.9rem;
+    /* Usando variable de escala */
+    font-size: var(--fs-sm); 
     color: var(--color-text-subtle);
-    align-self: flex-end; /* Arriba a la derecha */
+    align-self: flex-end; 
     text-align: right;
 }
 
 .grid-item .item-title {
-    font-size: 1.2rem;
+    /* Usando variable de escala */
+    font-size: var(--fs-lg); 
     font-weight: 500;
-    align-self: flex-start; /* Abajo a la izquierda */
-    margin-top: auto; /* Empuja el título abajo */
+    align-self: flex-start; 
+    margin-top: auto; 
+    position: relative;
+    z-index: 1;
 }
 
 .grid-item img {
@@ -348,9 +401,9 @@ details > summary::-webkit-details-marker {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cubrir el área sin distorsionar, recortando si es necesario */
-    z-index: 0; /* Poner la imagen detrás del texto pero sin usar valores negativos (evita problemas con stacking contexts) */
-    opacity: 0.4; /* Hacer la imagen más sutil detrás del texto */
+    object-fit: cover; 
+    z-index: 0; 
+    opacity: 0.4; 
     transition: opacity 0.2s;
 }
 
@@ -361,29 +414,6 @@ details > summary::-webkit-details-marker {
     z-index: 1;
 }
 
-
-/* Media Queries para Responsive Design (muy básico por ahora) */
-@media (max-width: 768px) {
-    .video-section .section-content {
-        flex-direction: column; /* Apilar columnas en pantallas pequeñas */
-    }
-
-    .video-description-column,
-    .video-player-column {
-        max-width: 100%;
-        padding-right: 0;
-        margin-bottom: 20px;
-    }
-
-    .video-player-column iframe {
-        height: 200px; /* Ajustar altura del video para móviles */
-    }
-
-    .image-grid-section .grid-container {
-        grid-template-columns: 1fr; /* Una sola columna para los proyectos en móvil */
-    }
-}
-
 /*
 ====================================
 SECCIÓN DE IMAGEN ANCHA (FULL-WIDTH)
@@ -391,27 +421,30 @@ SECCIÓN DE IMAGEN ANCHA (FULL-WIDTH)
 */
 
 .full-width-image-section .section-content {
-    padding: 0; /* Elimina el padding para que la imagen toque los bordes laterales del contenedor */
-    display: block; /* Para asegurar que el enlace y la imagen se comporten correctamente */
+    padding: 0; 
+    display: block;
 }
 
 .full-width-image-link {
     display: block;
     position: relative;
     overflow: hidden;
-    height: 400px; /* Altura fija para la imagen, ajusta según necesites */
+    height: 400px;
     text-decoration: none;
     color: var(--color-text-light);
     transition: transform 0.3s ease;
 }
 
-
 .full-width-image-link img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin distorsión */
+    object-fit: cover;
     display: block;
     transition: transform 0.5s ease;
+}
+
+.full-width-image-link:hover img {
+    transform: scale(1.03); 
 }
 
 .image-overlay {
@@ -419,36 +452,91 @@ SECCIÓN DE IMAGEN ANCHA (FULL-WIDTH)
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); /* Degradado oscuro en la parte inferior */
+    padding: var(--space-md);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
     color: var(--color-white);
-    font-size: 1.1rem;
-    pointer-events: none; /* Permite hacer click en el enlace detrás del overlay */
+    pointer-events: none;
 }
 
 .image-overlay h3 {
-    margin: 0 0 5px 0;
-    font-size: 1.5rem;
+    margin: 0 0 var(--space-xs) 0;
+    font-size: 1.5rem; /* Se mantiene en REM por ser un tamaño específico */
     font-weight: 600;
 }
 
 .image-overlay p {
-    font-size: 0.9rem;
+    /* Usando variable de escala */
+    font-size: var(--fs-sm);
     color: var(--color-text-subtle);
 }
 
-/* Media Queries para Responsive Design (ajustes para la nueva sección) */
+/*
+====================================
+MEDIA QUERIES (RESPONSIVE)
+====================================
+*/
+
 @media (max-width: 768px) {
+    /* CONTROL GLOBAL: Reducimos la base de la unidad REM, lo que encoge todos los textos */
+    html {
+        font-size: 14px; 
+    }
+    
+    .app-container {
+        width: 100%;
+        padding: 0 var(--space-md);
+    }
+    
+    .landing-tag {
+        display: none; /* Ocultamos el texto gigante en móvil */
+    }
+
+    .main-header {
+        align-items: center; /* Alineamos la navegación y el logo */
+        padding-top: var(--space-md);
+    }
+    
+    .main-nav ul {
+        gap: var(--space-md);
+    }
+    
+    .content-section {
+        flex-direction: column; /* Apilamos en columna */
+        gap: var(--space-lg);
+        margin-top: 0;
+    }
+
+    .video-section .section-content {
+        flex-direction: column;
+    }
+
+    .video-description-column,
+    .video-player-column {
+        max-width: 100%;
+        padding-right: 0;
+        margin-bottom: var(--space-md);
+    }
+
+    .video-player-column iframe {
+        height: 200px;
+    }
+
+    .image-grid-section .grid-container {
+        grid-template-columns: 1fr; /* Una sola columna para los proyectos en móvil */
+    }
+
     .full-width-image-link {
-        height: 250px; /* Altura más pequeña para móviles */
+        height: 250px; 
     }
-
-    .image-overlay h3 {
-        font-size: 1.2rem;
+    
+    .main-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-md);
     }
-
-    .image-overlay p {
-        font-size: 0.8rem;
+    
+    .footer-social {
+        justify-content: flex-start;
+        gap: var(--space-sm);
     }
 }
-
