@@ -4,6 +4,9 @@ ESTILOS GLOBALES Y CONTENEDOR PRINCIPAL - DARK THEME
 ====================================
 */
 
+/* Importar Pixelify Sans desde Google Fonts (fallback a Helvetica/Arial si no está disponible) */
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@300;400;500;700&display=swap');
+
 :root {
     /* Variables de Color (INVERTIDAS para Dark Theme) */
     --color-bg-dark: #000000; /* Gris muy oscuro/casi negro para el fondo principal */
@@ -16,8 +19,10 @@ ESTILOS GLOBALES Y CONTENEDOR PRINCIPAL - DARK THEME
 
 
     /* Variables de Tipografía */
-    --font-primary: 'Helvetica Neue', 'Arial', sans-serif;
+    /* Establecemos Pixelify Sans como fuente primaria (se importa arriba). */
+    --font-primary: 'Pixelify Sans', 'Helvetica Neue', 'Arial', sans-serif;
     --font-size-logo: 1.2rem;
+    
 }
 
 /* Reset básico para eliminar márgenes y padding por defecto */
@@ -27,10 +32,14 @@ ESTILOS GLOBALES Y CONTENEDOR PRINCIPAL - DARK THEME
     padding: 0;
 }
 
+
 body {
     /* Fondo muy oscuro */
     background-color: var(--color-bg-dark); 
     font-family: var(--font-primary);
+    /* Mejoras tipográficas globales */
+    font-optical-sizing: auto;
+    font-weight: 400;
     color: var(--color-text-light); /* Texto claro */
     line-height: 1.6;
     min-height: 100vh;
@@ -59,7 +68,7 @@ HEADER (Encabezado y Navegación) - DARK THEME
     top: 15px;
     /* Ajustamos 'left' para que sea relativo al app-container en el centrado */
     left: 5vw; 
-    font-size: 0.85rem;
+    font-size: 5rem;
     color: var(--color-text-subtle); /* Sutil */
     text-transform: uppercase;
 }
@@ -312,7 +321,7 @@ details > summary::-webkit-details-marker {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.grid-item:hover {
+.grid-item:hover, .full-width-image-link:hover {
     transform: translateY(-5px);
     /* iniciar con rojo y activar la animación continua */
     box-shadow: 0 5px 15px rgba(179, 0, 0, 0.85);
@@ -322,7 +331,8 @@ details > summary::-webkit-details-marker {
 .grid-item .item-number {
     font-size: 0.9rem;
     color: var(--color-text-subtle);
-    align-self: flex-start; /* Arriba a la izquierda */
+    align-self: flex-end; /* Arriba a la derecha */
+    text-align: right;
 }
 
 .grid-item .item-title {
@@ -373,3 +383,72 @@ details > summary::-webkit-details-marker {
         grid-template-columns: 1fr; /* Una sola columna para los proyectos en móvil */
     }
 }
+
+/*
+====================================
+SECCIÓN DE IMAGEN ANCHA (FULL-WIDTH)
+====================================
+*/
+
+.full-width-image-section .section-content {
+    padding: 0; /* Elimina el padding para que la imagen toque los bordes laterales del contenedor */
+    display: block; /* Para asegurar que el enlace y la imagen se comporten correctamente */
+}
+
+.full-width-image-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    height: 400px; /* Altura fija para la imagen, ajusta según necesites */
+    text-decoration: none;
+    color: var(--color-text-light);
+    transition: transform 0.3s ease;
+}
+
+
+.full-width-image-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin distorsión */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); /* Degradado oscuro en la parte inferior */
+    color: var(--color-white);
+    font-size: 1.1rem;
+    pointer-events: none; /* Permite hacer click en el enlace detrás del overlay */
+}
+
+.image-overlay h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.image-overlay p {
+    font-size: 0.9rem;
+    color: var(--color-text-subtle);
+}
+
+/* Media Queries para Responsive Design (ajustes para la nueva sección) */
+@media (max-width: 768px) {
+    .full-width-image-link {
+        height: 250px; /* Altura más pequeña para móviles */
+    }
+
+    .image-overlay h3 {
+        font-size: 1.2rem;
+    }
+
+    .image-overlay p {
+        font-size: 0.8rem;
+    }
+}
+
