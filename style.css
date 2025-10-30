@@ -23,11 +23,12 @@ ESTILOS GLOBALES Y CONTENEDOR PRINCIPAL - DARK THEME
 
     /* --- ESCALA TIPOGRÁFICA --- */
     --fs-xs: 0.75rem;   /* 12px (Ej: Copyright) */
-    --fs-sm: 0.9rem;    /* 14.4px (Ej: Nav, Enlaces Footer) */
+    --fs-sm: 1.2rem;    /* 14.4px (Ej: Nav, Enlaces Footer) */
+    --fs-smd: 0.9rem;    /* 14.4px (Ej: Nav, Enlaces Footer) */
     --fs-md: 1rem;      /* 16px (Ej: Párrafo base, CTA Link) */
     --fs-lg: 1.2rem;    /* 19.2px (Ej: Logo, Títulos Grid) */
-    --fs-xl: 1.8rem;    /* 28.8px (Ej: H2 de secciones, Párrafo principal) */
-    --fs-xxl: 2.8rem;   /* 44.8px (Ej: H1 principal) */
+    --fs-xl: 1.9rem;    /* 28.8px (Ej: H2 de secciones, Párrafo principal) */
+    --fs-xxl: 3rem;   /* 44.8px (Ej: H1 principal) */
     --fs-xxxl: 5rem;    /* 80px (Ej: Landing Tag) */
 
     /* Variables de Espaciado */
@@ -222,7 +223,7 @@ FOOTER (Pie de Página) - DARK THEME
     text-decoration: none;
     color: var(--color-text-light);
     /* Usando variable de escala */
-    font-size: var(--fs-sm); 
+    font-size: var(--fs-sdm); 
     font-weight: 500;
 }
 
