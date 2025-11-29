@@ -1,0 +1,118 @@
+/*
+====================================
+HEADER (Encabezado y Navegación)
+====================================
+*/
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: var(--space-xl); 
+    height: var(--space-xxl);
+}
+
+.logo {
+    font-size: var(--fs-lg);
+    text-transform: lowercase;
+    font-weight: bold;
+    color: var(--color-text-light);
+}
+
+/* 1. Contenedor principal de la navegación */
+.main-nav {
+    display: flex;
+    margin-left: auto;
+    flex-direction: column; /* Para apilar WORKS encima de su submenú */
+    align-items: flex-end;
+}
+
+/* 2. Lista principal (CONTAC, WORKS, LINKS) */
+.main-nav > ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-lg);
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-size: var(--fs-sm);
+    transition: color 0.2s;
+}
+
+.main-nav a:hover {
+    color: var(--color-text-red);
+}
+
+/*
+====================================
+SUBMENÚ WORKS (Click/Toggle)
+====================================
+*/
+.dropdown-menu {
+    /* Necesitamos que el <li> sea relativo para que el submenú se posicione correctamente */
+    position: relative; 
+}
+
+.dropdown-submenu {
+    list-style: none;
+    
+    /* 1. CAMBIAMOS DE FLEX A POSICIONAMIENTO ABSOLUTO / BLOQUE */
+    position: absolute; /* Permite que flote sobre el contenido */
+    top: 100%;          /* Lo coloca justo debajo del enlace "WORKS" */
+    left: 50%;          /* Centra el submenú horizontalmente */
+    transform: translateX(-50%); /* Ajuste de centrado */
+
+    /* 2. DISEÑO VISUAL Y CONTENEDOR */
+    min-width: 200px; /* Asegura que haya suficiente espacio para los textos */
+    text-align: center; /* Centra el texto de las opciones */
+    padding: var(--space-xs) 0;
+    background-color: var(--color-bg-dark); /* Fondo oscuro para que destaque */
+    
+    /* PROPIEDADES DE OCULTAMIENTO */
+    max-height: 0; 
+    overflow: hidden; 
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+    z-index: 100; /* Asegura que esté por encima de todo */
+}
+
+/* 3. Estilos de los enlaces del submenú (ahora en bloques) */
+.dropdown-submenu li a {
+    display: block; /* IMPORTANTE: Cada enlace ocupa su propia línea */
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--fs-sm); /* Tamaño de fuente normal */
+}
+
+.dropdown-submenu li a:hover {
+    background-color: rgba(179, 0, 0, 0.2);
+    color: var(--color-text-red);
+}
+
+
+/* Clase para MOSTRAR el submenú (Agregada por JavaScript) */
+.submenu-open .dropdown-submenu {
+    max-height: 300px; /* Asegurarse de que sea suficiente para todos los elementos */
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/*
+====================================
+MEDIA QUERIES (RESPONSIVE) del Header
+====================================
+*/
+
+@media (max-width: 768px) {
+    /* ... estilos de media query ... */
+    
+    /* En móvil, volvemos a posicionamiento estático si lo prefieres para que fluya */
+    .dropdown-submenu {
+        position: static;
+        transform: none;
+        width: 100%;
+    }
+}

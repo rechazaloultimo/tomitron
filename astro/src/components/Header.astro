@@ -1,0 +1,46 @@
+---
+// src/components/Header.astro
+import '../styles/header.css'; 
+---
+
+<header class="main-header">
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#" class="load-content-btn" data-target="content-about">ABOUT</a></li>
+
+            <li><a href="#" class="load-content-btn" data-target="content-contact">CONTACT</a></li>
+
+     
+            
+            <li><a href="#" class="load-content-btn" data-target="content-links">LINKS</a></li>
+
+            <li class="dropdown-menu" id="works-dropdown">
+                <a href="#" class="works-toggle-btn">WORKS</a> 
+                
+                <ul class="dropdown-submenu">
+                    <li><a href="#" class="load-content-btn" data-target="content-pantallas">Diseño de Pantallas</a></li>
+                    <li><a href="#" class="load-content-btn" data-target="content-motion">Motion Graphics</a></li>
+                    <li><a href="#" class="load-content-btn" data-target="content-vivo">Video en Vivo</a></li>
+                    <li><a href="#" class="load-content-btn" data-target="content-av">Set A/V</a></li>
+                    <li><a href="#" class="load-content-btn" data-target="content-instalaciones">Video Instalación</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const dropdown = document.getElementById('works-dropdown');
+        const toggleButton = document.querySelector('.works-toggle-btn');
+        
+        if (toggleButton && dropdown) {
+            toggleButton.addEventListener('click', (e) => {
+                e.preventDefault(); // Evita que la página navegue al #
+                // Añade o quita la clase 'submenu-open' al elemento padre <li>
+                dropdown.classList.toggle('submenu-open');
+            });
+        }
+    });
+</script>

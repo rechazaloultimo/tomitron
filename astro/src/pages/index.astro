@@ -1,0 +1,35 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro'; // Tu layout principal
+
+// Importamos los componentes de las diferentes secciones
+import About from '../components/About.astro';
+import Links from '../components/Links.astro';
+
+// Importamos el componentes de Works
+import Pantallas from '../components/Works/Pantallas.astro';
+import Motion from '../components/Works/Motion.astro';
+import Vivo from '../components/Works/Vivo.astro';
+import AV from '../components/Works/AV.astro';
+import Instalaciones from '../components/Works/Instalaciones.astro';
+
+// Nota: Asegúrate de que todos estos componentes tengan la clase 'content-panel' 
+// y el 'id' correcto.
+---
+
+<Layout title="Tomas Serio - Portafolio SPA">
+    <main class="content-wrapper">
+        <div id="main-content-mount">
+            
+            <About id="content-about" class="content-panel hidden" />
+            
+            <Links id="content-links" class="content-panel hidden" />          
+            <Pantallas id="content-pantallas" class="content-panel hidden" />
+            <Motion id="content-motion" class="content-panel hidden" />
+            <Vivo id="content-vivo" class="content-panel hidden" />
+            <AV id="content-av" class="content-panel hidden" />
+            <Instalaciones id="content-instalaciones" class="content-panel hidden" />
+            
+            </div>
+    </main>
+</Layout>
